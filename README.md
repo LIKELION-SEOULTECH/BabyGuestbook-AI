@@ -38,3 +38,6 @@ KoBERT 기반 감정 분석 모델을 Flask API로 제공합니다.
 {
   "text": "오늘은 정말 행복한 하루야!"
 }
+
+![image](https://github.com/user-attachments/assets/79717132-70d6-414e-9e8b-41286b2570ce)
+
