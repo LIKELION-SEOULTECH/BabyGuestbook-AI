@@ -41,30 +41,39 @@ def preprocess(text):
 @app.route("/")
 def home():
     return "서버가 잘 작동 중입니다!"
-
+@app.route('/emotion/analysis', methods=['GET', 'POST'])
 def analyze_emotion():
-    data = request.get_json()
-    if not data or "text" not in data:
-        return jsonify({"error": "텍스트가 필요합니다."}), 400
+    if request.method == 'GET':
+        return '''
+            <form action="/emotion/analysis" method="post">
+                <input name="text" placeholder="텍스트 입력">
+                <input type="submit">
+            </form>
+        '''
+    elif request.method == 'POST':
+        data = request.get_json() or request.form
+        if not data or "text" not in data:
+            return jsonify({"error": "텍스트가 필요합니다."}), 400
 
-    text = data["text"]
-    input_ids, attention_mask, token_type_ids = preprocess(text)
+        text = data["text"]
+        input_ids, attention_mask, token_type_ids = preprocess(text)
 
-    ort_inputs = {
-        "input_ids": input_ids,
-        "attention_mask": attention_mask,
-        "token_type_ids": token_type_ids
-    }
+        ort_inputs = {
+            "input_ids": input_ids,
+            "attention_mask": attention_mask,
+            "token_type_ids": token_type_ids
+        }
 
-    outputs = session.run(None, ort_inputs)
-    logits = outputs[0]
-    predicted_class = int(np.argmax(logits))
+        outputs = session.run(None, ort_inputs)
+        logits = outputs[0]
+        predicted_class = int(np.argmax(logits))
 
-    return jsonify({
-        "input": text,
-        "predicted_class": predicted_class,
-        "label": label_map[predicted_class]
-    })
+        return jsonify({
+            "input": text,
+            "predicted_class": predicted_class,
+            "label": label_map[predicted_class]
+        })
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
