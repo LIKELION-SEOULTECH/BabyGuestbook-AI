@@ -3,8 +3,11 @@ import onnxruntime as ort
 import torch
 from kobert_transformers import get_tokenizer
 import numpy as np
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # 모든 도메인 허용 (원하면 특정 도메인만 허용 가능)
+
 
 # ONNX 모델 로드
 onnx_model_path = "kobert_emotion.onnx"
