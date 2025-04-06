@@ -1,4 +1,4 @@
-# 🍼 babyguestbook-AI - 감정 분석 Flask API 🚀
+# 🍼 babyguestbook-AI  -`♡´-
 
 KoBERT 기반 감정 분석 모델을 Flask API로 제공합니다.  
 텍스트 데이터를 입력받아 감정을 분류합니다.  
