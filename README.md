@@ -1,8 +1,8 @@
 안녕하세요 babyguestbook-AI 입니다-`♡´-
 
 - app.py: 모델 flask api 생성 
-        -> http://192.168.0.36:5000/emotion/analysis
-        테스트할 때는 아래 참고
+  http://192.168.0.36:5000/emotion/analysis
+  <테스트할 때는 아래 참고>
                 POST /emotion/analysis
         Content-Type: application/json
         
