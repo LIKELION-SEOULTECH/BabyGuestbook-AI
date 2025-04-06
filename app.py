@@ -19,8 +19,8 @@ max_len = 64
 
 # 라벨 맵 (필요 시 리턴용)
 label_map = {
-    0: "fear", 1: "surprise", 2: "angry", 3: "sadness",
-    4: "neutral", 5: "happiness", 6: "disgust"
+    0: "FEAR", 1: "SURPRISE", 2: "ANGRY", 3: "SADNESS",
+    4: "NEUTRAL", 5: "HAPPINESS", 6: "DISGUST"
 }
 
 def preprocess(text):
